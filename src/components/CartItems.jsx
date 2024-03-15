@@ -29,7 +29,7 @@ const CartItems = (data) => {
     const { category, title, description, price, oldPrice, rating, image, inStock, _id, cartId, quantity } = data;
 
     return (
-        <div className='cart-item' >
+        <div className='cart-item bg' >
             <div>
                 <img src={image} width={'150px'} alt={title} />
             </div>

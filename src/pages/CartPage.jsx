@@ -48,10 +48,10 @@ const CartPage = () => {
                         </Link>
                     </Empty>
                 </div>
-                : <div id='cart-item-list'>
+                : <div id='cart-item-list' >
                     {cartProductData?.map(({ _id, product, quantity }) => <CartItems key={_id} {...{ ...product, cartId: _id, quantity }} />)}
                 </div>}
-            <div id='price-details'>
+            <div id='price-details' className='bg'>
                 <div className='price-borders total-amount'>
                     <h3>
                         PRICE DETAILS
