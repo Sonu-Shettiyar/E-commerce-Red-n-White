@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
@@ -7,6 +8,13 @@ const ProductContextProvider = ({ children }) => {
     const [productData, setProductData] = useState([]);
     const [cartProductData, setCartProductData] = useState([]);
     const [isError, setIsError] = useState(false);
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = (type, message) => {
+        api[type]({
+            message,
+            placement: 'topRight',
+        });
+    };
     const getProductData = async () => {
         try {
             const res = await axios(Base_URL + 'products');
@@ -28,23 +36,40 @@ const ProductContextProvider = ({ children }) => {
     const handleAddCartItem = async (payload) => {
         try {
             const response = await axios.post(Base_URL + 'cart', payload);
-            alert(response.data.message)
+            openNotification('success', response.data.message)
         } catch (error) {
-            alert(error.message)
+            console.log(error, 'error')
+            openNotification('error', error?.response?.data?.message || 'Something Went Wrong...')
         }
     }
 
+    const handleCartItemDelete = async (id) => {
+        try {
+            await axios.delete(Base_URL + 'cart/' + id)
+            getCartProductData();
+            openNotification('success', 'Item Removed Succesfully')
+        } catch (error) {
+            console.log(error, 'error')
+            openNotification('error', error?.response?.data?.message || 'Something Went Wrong...')
+        }
+    }
+    const handleQuantityUpdate = async (id, value) => {
+        try {
+            await axios.patch(Base_URL + 'cart/' + id, { quantity: value })
+            getCartProductData()
+        } catch (error) {
+            console.log(error, 'error')
+            openNotification('error', error?.response?.data?.message || 'Something Went Wrong...')
+        }
+    }
     useEffect(() => {
         getProductData();
     }, [])
 
-    useEffect(() => {
-        getCartProductData();
-    }, [handleAddCartItem])
-    
+
     return (
-        <ProductContext.Provider value={{ productData, setProductData, isError, cartProductData, handleAddCartItem }}>
-            {children}
+        <ProductContext.Provider value={{ productData, setProductData, isError, cartProductData, handleAddCartItem, handleCartItemDelete, getCartProductData, openNotification, handleQuantityUpdate }}>
+            {contextHolder}            {children}
         </ProductContext.Provider>
     )
 }

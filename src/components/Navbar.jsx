@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 2% ', border: '1px solid red', alignItems: 'center' }}>
+        <div id='navbar'>
             <div>
-                <Link to={'/'}>
-                <h2>E-Commerce</h2>
+                <Link to={'/'} style={{textDecoration:'none'}}>
+                <h1>R&W</h1>
                 </Link>
             </div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
