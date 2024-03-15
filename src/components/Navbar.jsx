@@ -7,7 +7,9 @@ const Navbar = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 2% ', border: '1px solid red', alignItems: 'center' }}>
             <div>
+                <Link to={'/'}>
                 <h2>E-Commerce</h2>
+                </Link>
             </div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', gap: '10px', marginRight: '20px', alignItems: 'center' }}>

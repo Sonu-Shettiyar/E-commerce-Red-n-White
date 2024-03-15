@@ -4,15 +4,14 @@ import React from 'react'
 import { useProductContext } from '../context/ProductContext';
 const Base_URL = 'http://localhost:3000/';
 
-const ProductCard = (data) => {
+const CartItems = (data) => {
 
-    const { title, description, price, oldPrice, rating, image, inStock, _id } = data;
-    const { handleAddCartItem } = useProductContext();
-    
+    const { Category, title, description, price, oldPrice, rating, image, inStock, _id } = data;
+
     return (
-        <div className='product-card' >
+        <div className='cart-items' >
             <div>
-                <img src={image} width={'10%'} />
+                <img src={image} width={'40%'} />
             </div>
             <div>
                 <h3>{title.substring(0, 35)}</h3>
@@ -26,11 +25,9 @@ const ProductCard = (data) => {
                     {" " + price}
                 </p>
             </div>
-            <div>
-                <Button style={{ width: '100%' }} type='primary' onClick={() => handleAddCartItem({ product: _id })}>ADD TO CART</Button>
-            </div>
+         
         </div>
     )
 }
 
-export default ProductCard;
+export default CartItems;

@@ -25,12 +25,25 @@ const ProductContextProvider = ({ children }) => {
             setIsError(true)
         }
     }
+    const handleAddCartItem = async (payload) => {
+        try {
+            const response = await axios.post(Base_URL + 'cart', payload);
+            alert(response.data.message)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     useEffect(() => {
         getProductData();
-        getCartProductData();
     }, [])
+
+    useEffect(() => {
+        getCartProductData();
+    }, [handleAddCartItem])
+    
     return (
-        <ProductContext.Provider value={{ productData, setProductData, isError }}>
+        <ProductContext.Provider value={{ productData, setProductData, isError, cartProductData, handleAddCartItem }}>
             {children}
         </ProductContext.Provider>
     )

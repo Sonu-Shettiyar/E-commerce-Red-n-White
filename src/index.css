@@ -27,3 +27,11 @@ body {
   gap: 20px;
   margin: 20px;
 }
+.cart-items{
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+}
+.cart-items div img{
+  margin: auto;
+}
