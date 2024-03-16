@@ -4,6 +4,25 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const ProductContext = createContext();
 const Base_URL = 'http://localhost:3000/';
+function getStars(rating) {
+    const roundedRating = Math.round(rating * 2) / 2;
+    const fullStars = Math.floor(roundedRating);
+    const halfStars = roundedRating - fullStars > 0 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    let stars = '';
+    for (let i = 0; i < fullStars; i++) {
+        stars += '★';
+    }
+    if (halfStars === 1) {
+        stars += '½';
+    }
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '☆';
+    }
+
+    return stars;
+}
 const ProductContextProvider = ({ children }) => {
     const [productData, setProductData] = useState([]);
     const [cartProductData, setCartProductData] = useState([]);
@@ -13,11 +32,12 @@ const ProductContextProvider = ({ children }) => {
         api[type]({
             message,
             placement: 'topRight',
+            duration: 0.5,
         });
     };
-    const getProductData = async () => {
+    const getProductData = async (category = '') => {
         try {
-            const res = await axios(Base_URL + 'products');
+            const res = await axios(Base_URL + `products?category=${category}`);
             setProductData(res.data);
         } catch (error) {
             console.error(error)
@@ -68,7 +88,7 @@ const ProductContextProvider = ({ children }) => {
 
 
     return (
-        <ProductContext.Provider value={{ productData, setProductData, isError, cartProductData, handleAddCartItem, handleCartItemDelete, getCartProductData, openNotification, handleQuantityUpdate }}>
+        <ProductContext.Provider value={{ productData, isError, cartProductData, handleAddCartItem, handleCartItemDelete, getProductData, getCartProductData, openNotification, handleQuantityUpdate, getStars }}>
             {contextHolder}            {children}
         </ProductContext.Provider>
     )
