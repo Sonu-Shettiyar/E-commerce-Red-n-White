@@ -46,6 +46,7 @@ body {
   align-items: center;
   height: 80vh;
 }
+
 #product-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

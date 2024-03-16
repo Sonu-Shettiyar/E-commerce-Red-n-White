@@ -15,7 +15,7 @@ const ProductCard = (data) => {
 
             <div>
                 <h3>{title.substring(0, 35)}</h3>
-                <p>{description.substring(0, 50)}</p>
+                <p>{description.substring(0, 35)}</p>
             </div>
 
             <div>
