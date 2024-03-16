@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const ProductContext = createContext();
-const Base_URL = 'http://localhost:3000/';
+const Base_URL = import.meta.env.VITE_BASE_URL;
 function getStars(rating) {
     const roundedRating = Math.round(rating * 2) / 2;
     const fullStars = Math.floor(roundedRating);
@@ -57,6 +57,7 @@ const ProductContextProvider = ({ children }) => {
         try {
             const response = await axios.post(Base_URL + 'cart', payload);
             openNotification('success', response.data.message)
+            getCartProductData();
         } catch (error) {
             console.log(error, 'error')
             openNotification('error', error?.response?.data?.message || 'Something Went Wrong...')
@@ -84,12 +85,14 @@ const ProductContextProvider = ({ children }) => {
     }
     useEffect(() => {
         getProductData();
+        getCartProductData();
     }, [])
 
 
     return (
         <ProductContext.Provider value={{ productData, isError, cartProductData, handleAddCartItem, handleCartItemDelete, getProductData, getCartProductData, openNotification, handleQuantityUpdate, getStars }}>
-            {contextHolder}            {children}
+            {contextHolder}
+            {children}
         </ProductContext.Provider>
     )
 }
