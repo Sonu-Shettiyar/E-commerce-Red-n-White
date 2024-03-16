@@ -13,35 +13,37 @@ const ProductCard = (data) => {
                 <img src={image} width={'10%'} />
             </div>
 
-            <div>
-                <h3>{title.substring(0, 35)}</h3>
-                <p>{description.substring(0, 35)}</p>
-            </div>
-
-            <div>
-                <div className='center-div'>
-                    <p>
-                        {rating}
-                        <span className='rating'>
-                            {' ' + getStars(rating)}
-                        </span>
-                    </p>
-                    <span style={{ fontSize: 'small' }}>{category.toUpperCase()}</span>
-                </div>
-                <div className='center-div'>
-                    <p>
-                        Price: $ <s>{oldPrice}</s>
-                        {" " + price}
-                    </p>
-                    <p>In Stock:{inStock}</p>
-
+            {/* <div> */}
+                <div>
+                    <h3>{title.substring(0, 35)}</h3>
+                    <p>{description.substring(0, 35)}</p>
                 </div>
 
-            </div>
+                <div>
+                    <div className='center-div'>
+                        <p>
+                            {rating}
+                            <span className='rating'>
+                                {' ' + getStars(rating)}
+                            </span>
+                        </p>
+                        <span style={{ fontSize: 'small' }}>{category.toUpperCase()}</span>
+                    </div>
+                    <div className='center-div'>
+                        <p>
+                            Price:<s>${oldPrice}</s>
+                            {" $" + price}
+                        </p>
+                        <p>In Stock:{inStock}</p>
 
-            <div>
-                <Button style={{ width: '100%' }} type='primary' onClick={() => handleAddCartItem({ product: _id })}>ADD TO CART</Button>
-            </div>
+                    </div>
+
+                </div>
+
+                <div className='add-cart-btn'>
+                    <Button style={{ width: '100%' }} type='primary' onClick={() => handleAddCartItem({ product: _id })}>ADD TO CART</Button>
+                </div>
+            {/* </div> */}
         </div>
     )
 }

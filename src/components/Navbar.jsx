@@ -15,7 +15,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ display: 'flex', gap: '10px', marginRight: '20px', alignItems: 'center' }}>
+                <div id='category-btns'>
 
                     <Button onClick={() => getProductData('mens')} type='primary'>Men</Button>
                     <Button onClick={() => getProductData('womens')} type='primary'>Women</Button>
