@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ProductCard from '../components/ProductCard'
-import axios from 'axios';
 import { useProductContext } from '../context/ProductContext';
 import Navbar from '../components/Navbar';
 import { Spin } from 'antd';

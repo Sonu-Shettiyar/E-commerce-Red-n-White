@@ -1,8 +1,6 @@
 import { Button } from 'antd'
-import axios from 'axios';
 import React from 'react'
 import { useProductContext } from '../context/ProductContext';
-const Base_URL = 'http://localhost:3000/';
 
 const ProductCard = (data) => {
 

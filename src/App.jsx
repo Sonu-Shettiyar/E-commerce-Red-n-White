@@ -3,7 +3,7 @@ import MainComponent from './pages/index';
 function App() {
 
   return (
-    <div style={{ display: '1px solid red' }}>
+    <div>
       <MainComponent />
     </div>
   )

@@ -1,6 +1,5 @@
 import { Button } from 'antd'
-import axios from 'axios';
-import React, { useState } from 'react'
+import React from 'react'
 import { useProductContext } from '../context/ProductContext';
 import { DeleteFilled } from '@ant-design/icons';
 
@@ -8,7 +7,7 @@ import { DeleteFilled } from '@ant-design/icons';
 
 const CartItems = (data) => {
     const { handleCartItemDelete, handleQuantityUpdate,getStars } = useProductContext();
-    const { category, title, description, price, oldPrice, rating, image, inStock, _id, cartId, quantity } = data;
+    const { category, title, description, price, oldPrice, rating, image, inStock, cartId, quantity } = data;
     return (
         <div className='cart-item bg' >
             <div>
