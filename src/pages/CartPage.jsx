@@ -52,11 +52,7 @@ const CartPage = () => {
 
             </div>
 
-            {cartProductData.length===0?<div className='spinner-div'>
-                <Spin tip="" size="large">
-                    <div className="content" >Loading...</div>
-                </Spin>
-            </div>:
+           
 
             <div id='cart-main'>
                 {cartProductData.length === 0 ?
@@ -119,7 +115,7 @@ const CartPage = () => {
                         <button>Place Order</button>
                     </div>
                 </div>
-            </div>}
+            </div>
         </>
     )
 }
