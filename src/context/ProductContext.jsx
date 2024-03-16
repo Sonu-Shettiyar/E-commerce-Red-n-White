@@ -35,6 +35,9 @@ const ProductContextProvider = ({ children }) => {
             duration: 0.5,
         });
     };
+    const sendOrderPlacedMessage = () => {
+        openNotification('success', 'Order Placed Succesfully...');
+    }
     const getProductData = async (category = '') => {
         try {
             const res = await axios(Base_URL + `products?category=${category}`);
@@ -90,7 +93,7 @@ const ProductContextProvider = ({ children }) => {
 
 
     return (
-        <ProductContext.Provider value={{ productData, isError, cartProductData, handleAddCartItem, handleCartItemDelete, getProductData, getCartProductData, openNotification, handleQuantityUpdate, getStars }}>
+        <ProductContext.Provider value={{ productData, isError, cartProductData, handleAddCartItem, handleCartItemDelete, sendOrderPlacedMessage,getProductData, getCartProductData, openNotification, handleQuantityUpdate, getStars }}>
             {contextHolder}
             {children}
         </ProductContext.Provider>

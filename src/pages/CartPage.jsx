@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useProductContext } from '../context/ProductContext';
 import CartItems from '../components/CartItems';
-import { Button, Empty, Spin } from 'antd';
+import { Alert, Button, Empty, Modal, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const CartPage = () => {
-    const { cartProductData, getCartProductData } = useProductContext();
+    const { cartProductData, getCartProductData ,sendOrderPlacedMessage} = useProductContext();
     const [totalAmount, setTotalAmount] = useState(0);
     const [oldPriceSum, setOldPriceSum] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
@@ -52,7 +52,7 @@ const CartPage = () => {
 
             </div>
 
-           
+
 
             <div id='cart-main'>
                 {cartProductData.length === 0 ?
@@ -73,6 +73,7 @@ const CartPage = () => {
                     : <div id='cart-item-list' >
                         {cartProductData?.map(({ _id, product, quantity }) => <CartItems key={_id} {...{ ...product, cartId: _id, quantity }} />)}
                     </div>}
+                
                 <div id='price-details' className='bg'>
                     <div className='price-borders total-amount'>
                         <h3>
@@ -82,7 +83,7 @@ const CartPage = () => {
                     <div className='price-borders'>
                         <div className='price-list-items-div'>
                             <h3>Price ({totalItems} items)</h3>
-                            <h3>{totalAmount}</h3>
+                            <h3>{oldPriceSum}</h3>
                         </div>
                         <div className='price-list-items-div'>
                             <h3>Discount</h3>
@@ -112,7 +113,7 @@ const CartPage = () => {
                         <span>You will save ${Math.abs(oldPriceSum - totalAmount)} on this order</span>
                     </div>
                     <div className='place-btn'>
-                        <button>Place Order</button>
+                        <button onClick={() => sendOrderPlacedMessage()}>Place Order</button>
                     </div>
                 </div>
             </div>
